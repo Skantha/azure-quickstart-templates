@@ -8,7 +8,7 @@ This template deploys an Elasticsearch cluster, Logstash and Kibana.
 You can specify a custom Logstash configuration using the encodedConfigString parameter or specify an existing storage account to use as Logstash input source.
 To ensure there are no conflicts deploy to a new resource group.
 
-After the deployment completes you can view the diagnostics data in Kibana. To get the public IP for Kibana, visit the Azure Portal, navigate to the resource group used for the deployment and look for the Public IP address resource named "elasticsearch-kibana-pip". Then point your browser to "http://<ip-address>:5601". Under Kibana configure an index pattern with name "wad".
+After the deployment completes you can view the diagnostics data in Kibana. To get the public IP for Kibana, visit the Azure Portal, navigate to the resource group used for the deployment and look for the Public IP address resource named "elasticsearch-kibana-pip". Then point your browser to "http://insert.kibana.ip.here:5601". Under Kibana configure an index pattern with name "wad".
 
 #Notes
 - This template uses the Elasticsearch template from: <a href="../elasticsearch">azure-quickstart-templates/elasticsearch/<a/>
