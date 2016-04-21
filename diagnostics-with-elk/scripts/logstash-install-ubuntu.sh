@@ -26,53 +26,46 @@ help()
 {
     echo ""
     echo ""
-	echo "This script installs Logstash 1.4.2 on Ubuntu, and configures it to be used with user plugins/configurations"
-	echo "Parameters:"
-	echo "p - The logstash package url to use. Currently tested to work on Logstash version 1.4.2."
-	echo "e - The encoded configuration string."
-	echo ""
-	echo ""
-	echo ""
+    echo "This script installs Logstash 1.4.2 on Ubuntu, and configures it to be used with user plugins/configurations"
+    echo "Parameters:"
+    echo "e - The encoded configuration string."
+    echo ""
+    echo ""
+    echo ""
 }
 
 log()
 {
-	echo "$1"
+    echo "$1"
 }
 
-#Script Parameters
-LOGSTASH_DEBIAN_PACKAGE_URL="https://download.elasticsearch.org/logstash/logstash/packages/debian/logstash_1.4.2-1-2c0f5a1_all.deb"
-
 #Loop through options passed
-while getopts :p:e:hsa:k:t:i: optname; do
+while getopts :e:hsa:k:t:i: optname; do
     log "Option $optname set with value ${OPTARG}"
   case $optname in
-    p)  #package url
-      LOGSTASH_DEBIAN_PACKAGE_URL=${OPTARG}
+    s)  #skip common install steps
+      SKIP_COMMON_INSTALL="YES"
       ;;
-	s)  #skip common install steps
-	  SKIP_COMMON_INSTALL="YES"
-	  ;;
     h)  #show help
       help
       exit 2
       ;;
     e)  #set the encoded configuration string
-	  log "Setting the encoded configuration string"
+      log "Setting the encoded configuration string"
       CONF_FILE_ENCODED_STRING="${OPTARG}"
       ;;
-	a)
-	  STORAGE_ACCOUNT_NAME=${OPTARG}
-	  ;;
-	k)
-	  STORAGE_ACCOUNT_KEY=${OPTARG}
-	  ;;
-	t)
-	  STORAGE_ACCOUNT_TABLES=${OPTARG}
-	  ;;
-	i)
-	  ES_CLUSTER_IP=${OPTARG}
-	  ;;
+    a)
+      STORAGE_ACCOUNT_NAME=${OPTARG}
+      ;;
+    k)
+      STORAGE_ACCOUNT_KEY=${OPTARG}
+      ;;
+    t)
+      STORAGE_ACCOUNT_TABLES=${OPTARG}
+      ;;
+    i)
+      ES_CLUSTER_IP=${OPTARG}
+      ;;
     \?) #unrecognized option - show help
       echo -e \\n"Option -${BOLD}$OPTARG${NORM} not allowed."
       help
@@ -87,17 +80,17 @@ done
 if [ -z $SKIP_COMMON_INSTALL ] 
 then
 
-	# Install Utilities
-	log "Installing utilities." 
-	sudo apt-get update
-	sudo apt-get -y --force-yes install python-software-properties debconf-utils
+    # Install Utilities
+    log "Installing utilities." 
+    sudo apt-get update
+    sudo apt-get -y --force-yes install python-software-properties debconf-utils
 
-	# Install Java
-	log "Installing Java." 
-	sudo add-apt-repository -y ppa:webupd8team/java
-	sudo apt-get update
-	echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
-	sudo apt-get install -y --force-yes oracle-java8-installer
+    # Install Java
+    log "Installing Java." 
+    sudo add-apt-repository -y ppa:webupd8team/java
+    sudo apt-get update
+    echo "oracle-java8-installer shared/accepted-oracle-license-v1-1 select true" | sudo debconf-set-selections
+    sudo apt-get install -y --force-yes oracle-java8-installer
 
 else
   log "Skipping common install"
@@ -129,17 +122,17 @@ then
   log "$DECODED_STRING"
   echo $DECODED_STRING > ~/logstash.conf
 else
-	log "Generating Logstash Config"
-	echo "input {" > ~/logstash.conf
-	log "Using specified table names"
-	TABLE_ARRAY=$(echo $STORAGE_ACCOUNT_TABLES | tr ";" "\n")
-	for TABLE in $TABLE_ARRAY
-		do
-		echo "azurewadtable {account_name => '$STORAGE_ACCOUNT_NAME' access_key => '$STORAGE_ACCOUNT_KEY' table_name => '$TABLE'}" >> ~/logstash.conf
-	done
-	echo "}" >> ~/logstash.conf
-	echo "output {elasticsearch {hosts => ['$ES_CLUSTER_IP:9200'] index => 'wad'}}" >> ~/logstash.conf
-	cat ~/logstash.conf
+    log "Generating Logstash Config"
+    echo "input {" > ~/logstash.conf
+    log "Using specified table names"
+    TABLE_ARRAY=$(echo $STORAGE_ACCOUNT_TABLES | tr ";" "\n")
+    for TABLE in $TABLE_ARRAY
+        do
+        echo "azurewadtable {account_name => '$STORAGE_ACCOUNT_NAME' access_key => '$STORAGE_ACCOUNT_KEY' table_name => '$TABLE'}" >> ~/logstash.conf
+    done
+    echo "}" >> ~/logstash.conf
+    echo "output {elasticsearch {hosts => ['$ES_CLUSTER_IP:9200'] index => 'wad'}}" >> ~/logstash.conf
+    cat ~/logstash.conf
 fi
 
 log "Installing user configuration file"
