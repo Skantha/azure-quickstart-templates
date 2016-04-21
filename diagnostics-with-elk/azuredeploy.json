@@ -104,7 +104,7 @@
             "type": "string",
             "defaultValue": "na",
             "metadata": {
-                "description": "Base64 encoded Logstash configuration string."
+                "description": "Base64 encoded string which is the Logstash configuration. Visit http://codepen.io/juliusl/pen/ZGJJQB to create a logstash configuration. If you enter a value here then the next three parameters are ignored. Otherwise if you would like to specify the WAD storage account details then set this to 'na' and provide values for the next three parameters."
             }
         },
         "adminUsername": {
@@ -138,12 +138,14 @@
         },
         "existingDiagnosticsStorageAccountName": {
             "type": "string",
+            "defaultValue": "",
             "metadata": {
                 "description": "Exiting diagnostics storage account name."
             }
         },
         "existingDiagnosticsStorageAccountKey": {
             "type": "securestring",
+            "defaultValue": "",
             "metadata": {
                 "description": "Key for existing diagnostics storage account."
             }
@@ -354,7 +356,7 @@
                 "type": "CustomScriptForLinux",
                 "typeHandlerVersion": "1.2",
                 "settings": {
-                    "fileUris": [ "https://raw.githubusercontent.com/Skantha/semantic-logging/elk/ELK/AzureRM/elk-simple-on-ubuntu/elk-simple-install-ubuntu.sh" ],
+                    "fileUris": [ "https://raw.githubusercontent.com/Skantha/azure-quickstart-templates/elk/diagnostics-with-elk/scripts/elk-simple-install-ubuntu.sh" ],
                     "commandToExecute": "[concat('bash ./elk-simple-install-ubuntu.sh -e ', parameters('encodedConfigString'), ' -a ', parameters('existingDiagnosticsStorageAccountName'), ' -k ', parameters('existingDiagnosticsStorageAccountKey'), ' -t ', parameters('existingDiagnosticsStorageTableNames'), ' -i ', variables('esHost'))]"
                 }
             }

@@ -65,7 +65,7 @@ done
 #ELK (Simple) Install Script
 mkdir /opt/elk-simple/
 cd /opt/elk-simple/
-wget https://raw.githubusercontent.com/Skantha/semantic-logging/elk/ELK/AzureRM/elk-simple-on-ubuntu/logstash-install-ubuntu.sh
+wget https://raw.githubusercontent.com/Skantha/azure-quickstart-templates/elk/diagnostics-with-elk/scripts/logstash-install-ubuntu.sh
 
 #Install Logstash
 log "Installing Logstash"

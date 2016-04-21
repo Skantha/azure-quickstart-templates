@@ -3,19 +3,19 @@
     "contentVersion": "1.0.0.0",
     "parameters": {
         "adminUsername": {
-            "value": "null"
+            "value": "Admin"
         },
         "adminPassword": {
-            "value": "null"
+            "value": "Password"
         },        
         "existingDiagnosticsStorageAccountName": {
-            "value": "null"
+            "value": "MyStorageAccountName"
         },
         "existingDiagnosticsStorageAccountKey": {
-            "value": "null"
+            "value": "MyStorageAccountKey"
         },
         "existingDiagnosticsStorageTableNames": {
-            "value": "null"
+            "value": "MyStorageAccountTable"
         }
     }
 }
