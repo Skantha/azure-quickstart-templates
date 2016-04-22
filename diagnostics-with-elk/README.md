@@ -5,7 +5,12 @@
 </a>
 
 This template deploys an Elasticsearch cluster, Logstash and Kibana.
-You can specify a custom Logstash configuration using the encodedConfigString parameter or specify an existing storage account to use as Logstash input source.
+You can specify a custom Logstash configuration using the encodedConfigString parameter.
+To create a custom Logstash configuration visit http://codepen.io/juliusl/pen/ZGJJQB.
+If you don't want to enter a custom Logstash configuration and would like to use the logstash-input-azurewadtable plugin to
+input diagnostics data from Azure Table storage, then set the encodedConfigString parameter to 'na' and provide values for the
+existingDiagnosticsStorageAccountName, existingDiagnosticsStorageAccountKey, and existingDiagnosticsStorageTableNames parameters.
+
 To ensure there are no conflicts deploy to a new resource group.
 
 After the deployment completes you can view the diagnostics data in Kibana. To get the public IP for Kibana, visit the Azure Portal, navigate to the resource group used for the deployment and look for the Public IP address resource named "elasticsearch-kibana-pip". Then point your browser to "http://insert.kibana.ip.here:5601". Under Kibana configure an index pattern with name "wad".
