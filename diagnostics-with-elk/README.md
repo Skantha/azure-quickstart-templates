@@ -3,6 +3,9 @@
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSkantha%2Fazure-quickstart-templates%2Felk%2Fdiagnostics-with-elk%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
+<a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FSkantha%2Fazure-quickstart-templates%2Felk%2Fdiagnostics-with-elk%2Fazuredeploy.json" target="_blank">
+	<img src="http://armviz.io/visualizebutton.png"/>
+</a>
 
 This template deploys an Elasticsearch cluster, Logstash and Kibana.
 You can specify a custom Logstash configuration using the encodedConfigString parameter.
