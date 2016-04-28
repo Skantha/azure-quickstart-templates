@@ -1,0 +1,27 @@
+﻿{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "adminUsername": {
+            "value": "DiagElkAdmin"
+        },
+        "adminPassword": {
+            "value": "GEN-PASSWORD"
+        },        
+        "existingEHNamespace": {
+            "value": "skantha1b"
+        },
+        "existingEHSharedAccessKeyName": {
+            "value": "pol1"
+        },
+        "existingEHSharedAccessKey": {
+            "value": "LXCUg1SRBRkorf3rBwpGpvX3TsInfG/j+tH+t+h4owA="
+        },
+        "existingEHEntityPath": {
+            "value": "skantha1eh"
+        },
+        "existingEHPartitions": {
+            "value": 4
+        }
+    }
+}
