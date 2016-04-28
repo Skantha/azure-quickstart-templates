@@ -29,10 +29,11 @@ help()
     echo "This script installs Logstash on Ubuntu, and configures it to be used with Event Hub plugin."
     echo "Parameters:"
     echo "n - Event Hub namespace"
-	echo "s - Event Hub shared access key name"
+	echo "a - Event Hub shared access key name"
 	echo "k - Event Hub shared access key"
 	echo "e - Event Hub entity path"
 	echo "p - Event Hub partitions"
+	echo "i - Elasticsearch IP"
     echo ""
     echo ""
     echo ""
@@ -44,7 +45,7 @@ log()
 }
 
 #Loop through options passed
-while getopts :hsn:s:k:e:p:i: optname; do
+while getopts :hsn:a:k:e:p:i: optname; do
     log "Option $optname set with value ${OPTARG}"
   case $optname in
     h)  #show help
@@ -57,7 +58,7 @@ while getopts :hsn:s:k:e:p:i: optname; do
     n)
 	  EH_NAMESPACE=${OPTARG}
       ;;
-    s)
+    a)
       EH_KEY_NAME=${OPTARG}
       ;;
     k)
@@ -71,6 +72,7 @@ while getopts :hsn:s:k:e:p:i: optname; do
       ;;
     i)
       ES_CLUSTER_IP=${OPTARG}
+	  ;;
     \?) #unrecognized option - show help
       echo -e \\n"Option -${BOLD}$OPTARG${NORM} not allowed."
       help
@@ -113,7 +115,7 @@ sudo apt-get update
 sudo apt-get -y --force-yes install logstash
 
 # Install Azure WAD Event Hub Plugin
-log "Installing Azure WAD Table Plugin"
+log "Installing Azure WAD Event Hub Plugin"
 sudo /opt/logstash/bin/logstash-plugin install logstash-input-azurewadeventhub
 
 

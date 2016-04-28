@@ -1,18 +1,14 @@
 # Analyze Diagnostics Data with ELK
 
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fdiagnostics-with-elk%2Fazuredeploy.json" target="_blank">
+<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FSkantha%2Fazure-quickstart-templates%2Felk2%2Fdiagnostics-eventhub-elk%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 <a href="http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FAzure%2Fazure-quickstart-templates%2Fmaster%2Fdiagnostics-with-elk%2Fazuredeploy.json" target="_blank">
 	<img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-This template deploys an Elasticsearch cluster, Logstash and Kibana.
-You can specify a custom Logstash configuration using the encodedConfigString parameter.
-To create a custom Logstash configuration visit http://codepen.io/skkandia/pen/mPjOdR.
-If you don't want to enter a custom Logstash configuration and would like to use the <a href="https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash">logstash-input-azurewadtable</a> plugin to
-input diagnostics data from Azure Table storage, then set the encodedConfigString parameter to 'na' and provide values for the
-existingDiagnosticsStorageAccountName, existingDiagnosticsStorageAccountKey and existingDiagnosticsStorageTableNames parameters.
+This template deploys an Elasticsearch cluster, Logstash and Kibana. Logstash is configured using the WAD Event Hub input plugin
+<a href="https://github.com/Azure/azure-diagnostics-tools/tree/master/Logstash/logstash-input-azurewadeventhub">logstash-input-azurewadeventhub</a>.
 
 To ensure there are no conflicts deploy to a new resource group.
 

@@ -149,7 +149,7 @@
             }
         },
         "existingEHPartitions": {
-            "type": "string",
+            "type": "int",
             "metadata": {
                 "description": "Exiting Event Hub partitions."
             }
@@ -362,7 +362,7 @@
                     "fileUris": [ "https://raw.githubusercontent.com/Skantha/azure-quickstart-templates/elk2/diagnostics-eventhub-elk/scripts/logstash-eventhub-install-ubuntu.sh" ]
                 },
                 "protectedSettings": {
-                    "commandToExecute": "[concat('bash ./logstash-eventhub-install-ubuntu.sh -n ', parameters('existingEHNamespace'), ' -s ', parameters('existingEHSharedAccessKeyName'), ' -k ', parameters('existingEHSharedAccessKey'), ' -e ', parameters('existingEHEntityPath'), ' -p ', parameters('existingEHPartitions'), ' -i ', variables('esHost'))]"
+                    "commandToExecute": "[concat('bash ./logstash-eventhub-install-ubuntu.sh -n ', parameters('existingEHNamespace'), ' -a ', parameters('existingEHSharedAccessKeyName'), ' -k ', parameters('existingEHSharedAccessKey'), ' -e ', parameters('existingEHEntityPath'), ' -p ', parameters('existingEHPartitions'), ' -i ', variables('esHost'))]"
                 }
             }
         }
