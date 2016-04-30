@@ -9,16 +9,16 @@
             "value": "GEN-PASSWORD"
         },        
         "existingEHNamespace": {
-            "value": "skantha1b"
+            "value": "namespace"
         },
         "existingEHSharedAccessKeyName": {
-            "value": "pol1"
+            "value": "key1"
         },
         "existingEHSharedAccessKey": {
-            "value": "LXCUg1SRBRkorf3rBwpGpvX3TsInfG/j+tH+t+h4owA="
+            "value": "access-key"
         },
         "existingEHEntityPath": {
-            "value": "skantha1eh"
+            "value": "entity"
         },
         "existingEHPartitions": {
             "value": 4

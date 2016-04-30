@@ -14,7 +14,8 @@
             "defaultValue": "2.3.1",
             "allowedValues": [
               "1.5.2",
-              "2.3.1"
+              "2.3.1",
+              "2.3.2"
             ],
             "metadata": {
                 "description": "Elasticsearch version to install."
@@ -172,8 +173,8 @@
         "vnetID": "[resourceId('Microsoft.Network/virtualNetworks',variables('virtualNetworkName'))]",
         "subnetRef": "[concat(resourceId('Microsoft.Network/virtualNetworks', variables('virtualNetworkName')), '/subnets/', 'other')]",
         "esHost":  "10.0.2.100",
-        "esTemplate":  "https://raw.githubusercontent.com/Skantha/azure-quickstart-templates/elk2/elasticsearch/azuredeploy.json",
-        "esTemplateBase": "https://raw.githubusercontent.com/Skantha/azure-quickstart-templates/elk2"
+        "esTemplate":  "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/elasticsearch/azuredeploy.json",
+        "esTemplateBase": "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master"
     },
     "resources": [
 
@@ -359,7 +360,7 @@
                 "typeHandlerVersion": "1.5",
                 "autoUpgradeMinorVersion": true,
                 "settings": {
-                    "fileUris": [ "https://raw.githubusercontent.com/Skantha/azure-quickstart-templates/elk2/diagnostics-eventhub-elk/scripts/logstash-eventhub-install-ubuntu.sh" ]
+                    "fileUris": [ "https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/diagnostics-eventhub-elk/scripts/logstash-eventhub-install-ubuntu.sh" ]
                 },
                 "protectedSettings": {
                     "commandToExecute": "[concat('bash ./logstash-eventhub-install-ubuntu.sh -n ', parameters('existingEHNamespace'), ' -a ', parameters('existingEHSharedAccessKeyName'), ' -k ', parameters('existingEHSharedAccessKey'), ' -e ', parameters('existingEHEntityPath'), ' -p ', parameters('existingEHPartitions'), ' -i ', variables('esHost'))]"
